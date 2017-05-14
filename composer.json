@@ -1,0 +1,13 @@
+{
+    "name": "skyis/grpc-sample",
+    "require-dev": {
+        "grpc/grpc": "v1.0.0"
+    },
+    "authors": [
+        {
+            "name": "murakawa",
+            "email": "koichiro.murakawa@showcase-gig.com"
+        }
+    ],
+    "require": {}
+}

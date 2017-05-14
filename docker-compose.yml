@@ -1,0 +1,32 @@
+version: '2'
+services:
+  nginx:
+    container_name: nginx-proxy
+    image: nginx:1.13-alpine
+    ports:
+     - "80:80"
+     - "443:443"
+    # volumes:
+    #   - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
+    volumes_from:
+      - phpapp
+    depends_on:
+      - phpapp
+    networks:
+      front-tier:
+      back-tier:
+        aliases:
+          - api.skyis.internal
+          - api2.skyis.internal
+  phpapp:
+    build: .
+    container_name: phpapp
+    networks:
+      - back-tier
+    volumes:
+      - .:/var/local/
+networks:
+  front-tier:
+    driver: bridge
+  back-tier:
+    driver: bridge
